@@ -19,10 +19,17 @@ public class NewsEnt {
     private String title;
     private String category;
     private String content;
+    private String shortDescrption;
 
     public NewsEnt(String title, String category, String content) {
         this.title = title;
         this.category = category;
         this.content = content;
+        if (content.length()<150){
+            this.shortDescrption=content;
+        }
+        else{
+            this.shortDescrption=content.substring(0,149)+ "...";
+        }
     }
 }

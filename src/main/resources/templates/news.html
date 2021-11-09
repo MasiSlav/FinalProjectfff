@@ -11,22 +11,22 @@
 <body>
 <div class="container mt-4">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="navbar-brand" href="">Новое печатное издание</a>
+        <a class="navbar-brand" href="../index.html">Новое печатное издание</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
-                <li class="nav-item active">
-                    <a class="nav-link" href="">На главную <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">На главную <span class="sr-only">(current)</span></a>
                 </li>
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link" href="../static/upload.html">Загрузить статью <span class="sr-only"></span></a>
+                            <a class="nav-link" href="../upload.html">Загрузить статью <span class="sr-only"></span></a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                                data-toggle="dropdown" aria-expanded="false">Статьи</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
@@ -34,15 +34,15 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Финансы</a></li>
+                                <li><a class="dropdown-item" href="news-finances.html">Финансы</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Спорт</a></li>
+                                <li><a class="dropdown-item" href="news-sport.html">Спорт</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Политика</a></li>
+                                <li><a class="dropdown-item" href="news-politics.html">Политика</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -53,11 +53,37 @@
 </div>
 <div class="container mt-4">
     <h1>Новости </h1>
-    <div  th:each="el : ${news}" class="alert alert-info mt-2">
+    <div  th:each="el : ${newsPage}" class="alert alert-info mt-2">
         <h2 th:text="${el.title}"></h2>
-    <p th:text="${el.content}"> th:text="${el.content}/"</p>
+    <p th:text="${el.shortDescrption}"> th:text="${el.shortDescrption}/"</p>
+        <a th:href="'/templates/article/'+ ${el.id}">Подробнее</a>
+        <p th:text="${el.category}"> th:text="${el.category}/"</p>
     </div>
 </div>
+
+<nav aria-label="Pagination" th:if="${newsPage.totalPages gt 0}">
+    <ul class="pagination justify-content-center font-weight-bold">
+        <li class="page-item" th:classappend="${newsPage.number eq 0} ? 'disabled'">
+            <a class="page-link"
+               th:href="@{/templates/news.html?page={id}(id=${newsPage.number lt 2 ? 1 : newsPage.number})}"
+               aria-label="Previous" title="Previous Page" data-toggle="tooltip">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item" th:classappend="${i eq newsPage.number + 1} ? 'active'"
+            th:each="i : ${#numbers.sequence( 1, newsPage.totalPages, 1)}">
+            <a class="page-link" th:href="@{/templates/news.html?page={id}(id=${i})}" th:text="${i}"
+               th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+        </li>
+        <li class="page-item" th:classappend="${newsPage.number + 1 eq newsPage.totalPages} ? 'disabled'">
+            <a class="page-link"
+               th:href="@{/templates/news.html?page={id}(id=${newsPage.number + 2})}"
+               aria-label="Next" title="Next Page" data-toggle="tooltip">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
