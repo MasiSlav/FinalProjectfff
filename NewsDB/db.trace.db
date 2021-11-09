@@ -1,0 +1,94 @@
+2021-11-08 16:31:37 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "CONTENT[*]"; ожидалось "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"
+Syntax error in SQL statement "CONTENT[*]"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+CONTENT [42001-200]
+2021-11-08 16:32:13 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT CONTENT NEWS_ENT NEWS_TABLE[*]  FROM NEWS_ENT"
+Syntax error in SQL statement "SELECT CONTENT NEWS_ENT NEWS_TABLE[*]  FROM NEWS_ENT"; SQL statement:
+SELECT CONTENT NEWS_ENT NEWS_TABLE  FROM NEWS_ENT [42000-200]
+2021-11-08 16:32:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "NEWS_ENT" не найдена
+Table "NEWS_ENT" not found; SQL statement:
+insert into news_ent (category, content, title, id) values (?, ?, ?, ?) [42102-200]
+2021-11-08 16:33:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "NEWS_ENT" не найдена
+Table "NEWS_ENT" not found; SQL statement:
+insert into news_ent (category, content, title, id) values (?, ?, ?, ?) [42102-200]
+2021-11-08 16:35:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "NEWS_ENT" не найдена
+Table "NEWS_ENT" not found; SQL statement:
+insert into news_ent (category, content, title, id) values (?, ?, ?, ?) [42102-200]
+2021-11-08 18:05:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Значение слишком длинное для поля "CONTENT VARCHAR(255)": "STRINGDECODE('asdasdasdasd\n1231331\n123123333\n12313333\n\n12111111\n222233\n444444ssssssssssssssssssssssssssssssssssssssssssss... (329)"
+Value too long for column "CONTENT VARCHAR(255)": "STRINGDECODE('asdasdasdasd\n1231331\n123123333\n12313333\n\n12111111\n222233\n444444ssssssssssssssssssssssssssssssssssssssssssss... (329)"; SQL statement:
+insert into news_ent (category, content, title, id) values (?, ?, ?, ?) [22001-200]
+2021-11-08 18:14:03 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Неизвестный тип данных: "TEXTNEWS_ENT"
+Unknown data type: "TEXTNEWS_ENT"; SQL statement:
+ALTER TABLE NEWS_ENT
+ALTER COLUMN TITLE TEXTNEWS_ENT [50004-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:5971)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5697)
+	at org.h2.command.Parser.parseAlterTableAlterColumnType(Parser.java:8065)
+	at org.h2.command.Parser.parseAlterTableAlter(Parser.java:7811)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:7698)
+	at org.h2.command.Parser.parseAlter(Parser.java:6983)
+	at org.h2.command.Parser.parsePrepared(Parser.java:887)
+	at org.h2.command.Parser.parse(Parser.java:843)
+	at org.h2.command.Parser.parse(Parser.java:815)
+	at org.h2.command.Parser.prepareCommand(Parser.java:738)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
+	at org.h2.server.web.WebApp.query(WebApp.java:1116)
+	at org.h2.server.web.WebApp.query(WebApp.java:1092)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
+	at org.h2.server.web.WebServlet.doGet(WebServlet.java:129)
+	at org.h2.server.web.WebServlet.doPost(WebServlet.java:166)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2021-11-08 18:19:07 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "NEWS_ENTNEWS_ENT" не найдена
+Table "NEWS_ENTNEWS_ENT" not found; SQL statement:
+DELETE FROM NEWS_ENTNEWS_ENT [42102-200]
