@@ -35,7 +35,7 @@ public class ContentController {
     public String newsFinance(Model model,
                               @RequestParam(value = "page", required = false, defaultValue = "1") Integer page ){
         int size = 5;
-        model.addAttribute("newsPage", newsRepository.findAllByCategory("Финансы",PageRequest.of(page-1, size)));
+        model.addAttribute("newsPage", newsRepository.findAllByCategoryOrderByIdDesc("Финансы",PageRequest.of(page-1, size)));
         return "news-finances";
     }
 
@@ -43,7 +43,7 @@ public class ContentController {
     public String newsSport(Model model,
                             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page ){
         int size = 5;
-        model.addAttribute("newsPage", newsRepository.findAllByCategory("Спорт",PageRequest.of(page-1, size)));
+        model.addAttribute("newsPage", newsRepository.findAllByCategoryOrderByIdDesc("Спорт",PageRequest.of(page-1, size)));
         return "news-sport";
     }
 
@@ -51,7 +51,7 @@ public class ContentController {
     public String newsPolitics(Model model,
                                @RequestParam(value = "page", required = false, defaultValue = "1") Integer page ){
         int size = 5;
-        model.addAttribute("newsPage", newsRepository.findAllByCategory("Политика",PageRequest.of(page-1, size)));
+        model.addAttribute("newsPage", newsRepository.findAllByCategoryOrderByIdDesc("Политика",PageRequest.of(page-1, size)));
         return "news-politics";
     }
 
@@ -68,7 +68,7 @@ public class ContentController {
     public String paginated(Model model,
                             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page ){
         int size = 5;
-        model.addAttribute("newsPage", newsRepository.findAll(PageRequest.of(page-1, size)));
+        model.addAttribute("newsPage", newsRepository.findAllByOrderByIdDesc(PageRequest.of(page-1, size)));
         return "news";
     }
 
